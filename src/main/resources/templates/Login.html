@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presidency University Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://www.collegeduniyabharat.com/wp-content/uploads/2024/09/presidency-university-bangalore.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            color: #002147; /* Navy Blue for Presidency branding */
+            font-weight: 700;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        /* Admin button positioning */
+        .admin-login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-lg {
+            font-size: 1.1rem;
+            padding: 12px;
+        }
+
+        .btn-primary {
+            background-color: #004080;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #003366;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-dark {
+            background-color: #343a40;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 20px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Welcome to the Presidency University Library</h1>
+
+        <!-- User Login Button -->
+        <a th:href="@{'/lms/UserLogin'}"><button class="btn btn-primary btn-lg w-100 mb-3" >
+            User Login
+        </button></a>
+
+        <!-- Guest Button -->
+        <a th:href="@{'/lms/AdminLogin'}"><button class="btn btn-success btn-lg w-100" >
+            Admin Login
+        </button></a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+        }
+
+        .pu-logo {
+            width: 100px;
+        }
+
+        .navbar {
+            background-color: #003366;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar-brand, .nav-link, .nav-link i {
+            color: white !important;
+        }
+
+        .nav-link:hover {
+            border-radius: 5px;
+            background-color: grey;
+        }
+
+   .search-bar {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #f0f4fa, #e6edf5); /* soft bluish tones */
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ccd6e0;
+}
+
+.search-bar .form-control {
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+.search-bar .btn {
+    border-radius: 0 10px 10px 0;
+    padding: 10px 15px;
+}
+     
+
+        .account-menu {
+            position: relative;
+            display: inline-block;
+        }
+	
+        .account-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+            min-width: 150px;
+            z-index: 1050;
+        }
+
+        .account-menu:hover .account-dropdown {
+            display: block;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .book-image {
+            margin: 20px;
+            width: 170px;
+            border: 1px solid grey;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .book-card {
+            border: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+ .marquee-container {
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(to right, #003366, #0055a5);
+    color: white;
+    padding: 10px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.marquee-text {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll-left 20s linear infinite; /* Adjusted to 20s for moderate speed */
+    padding-left: 100%;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.book-section {
+    position: relative;
+    background: linear-gradient(to bottom right, #f9f9f9, #e6f2ff);
+    overflow: hidden;
+}
+
+.book-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.book-section::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.book-section .container {
+    position: relative;
+    z-index: 1;
+}
+#suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 90%;
+    margin-top: 5px;
+    z-index: 1000;
+}
+#suggestions .list-group-item {
+    cursor: pointer;
+    padding: 8px;
+}
+#suggestions .list-group-item:hover {
+    background-color: #f0f0f0;
+}
+.account-dropdown {
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 12px 16px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .account-dropdown p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .account-dropdown strong {
+    color: #1a73e8;
+  }
+
+  .account-dropdown a {
+    display: block;
+    text-decoration: none;
+    color: #0e141c;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: background 0.2s;
+    border-radius: 4px;
+  }
+
+  .account-dropdown a:hover {
+    background-color: #d1d2d6;
+  }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{'/home'}">
+                <img style="width:250px" class="pu-logo" src="images/pu_logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/viewTransaction" >Borrowed Books</a></li>
+                    <li class="nav-item account-menu">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-circle"></i> Account
+                        </a>
+                        <div class="account-dropdown bg-white shadow-lg rounded-xl p-4 w-64 space-y-3">
+    <a href="/login" 
+       class="block text-red-500 hover:text-red-700 font-medium transition duration-200">
+        Logout
+    </a>
+     <a href="/profile" class="block text-dark font-medium">Profile</a>
+</div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="image-section">
+        <img src="images/presidency_university.jpg" alt="Presidency University">
+    </div>
+
+    <div class="marquee-container">
+    <div class="marquee-text">
+        📚 WELCOME TO PRESIDENCY LIBRARY – Unlock Knowledge, One Book at a Time! 📖
+    </div>
+</div>
+
+
+    <section class="book-section py-5">
+		<div class="container">
+			<!-- Add this to your <head> if not already included -->
+
+<div class="search-bar container my-4">
+  <form method="post" action="/search" class="input-group shadow rounded">
+    <input 
+      type="text" 
+      id="searchInput" 
+      name="query" 
+      class="form-control border-0" 
+      placeholder="Search for books..." 
+      aria-label="Search">
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div id="suggestions" class="list-group mt-2" style="display: none;"></div>
+</div>
+			</div>
+			<br><br>
+			<h3 class="text-center mb-4">📚 Recommended Books</h3>
+			
+			<div class="row g-4 justify-content-center">
+			
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('Fungal Biology', 'images/biology/16.webp', 'J.W. Deacon','images/biology/books pdf/16.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/biology/16.webp" class="card-img-top book-image"
+							alt="Biology Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">Biology Basics</p>
+						</div>
+					</div>
+				</a>
+				
+				<!-- Repeat similar blocks for other books -->
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('How to Write a Business Plan', 'images/business/1.webp', 'Mike McKeever','images/business/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/business/1.webp" class="card-img-top book-image"
+							alt="Business Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">Business 101</p>
+						</div>
+					</div>
+				</a>
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('The 5 Second Rule', 'images/time management/1.webp', 'Mel Robbins','images/time management/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/time management/1.webp"
+							class="card-img-top book-image" alt="Software Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">The 5 Second Rule</p>
+						</div>
+					</div>
+				</a>
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('100 Great Business Ideas', 'images/economics/1.webp', 'Jeremy Kourof','images/economics/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/economics/1.webp" class="card-img-top book-image"
+							alt="Economics Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">100 Great Business Ideas</p>
+						</div>
+					</div>
+				</a>
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('Building Arduino Projects for the Internet of Things', 'images/technology/1.webp', 'Adeel Javed','images/technology/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/technology/1.webp"
+							class="card-img-top book-image" alt="Tech Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">Arduino Projects</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- New Arrivals Section -->
+	<section class="book-section py-5 bg-light">
+		<div class="container">
+			<h3 class="text-center mb-4">✨ New Arrivals</h3>
+			<div class="row g-4 justify-content-center">
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('Edible Wild Plants', 'images/environment/1.webp', 'John Kallas','images/environment/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/environment/1.webp"
+							class="card-img-top book-image" alt="Env Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">Environment Now</p>
+						</div>
+					</div>
+				</a>
+				<!-- Repeat similar blocks for other books -->
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('How to Write a Business Plan', 'images/business/1.webp', 'Mike McKeever','images/business/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/business/1.webp" class="card-img-top book-image"
+							alt="Humor Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">How to Write a Business Plan</p>
+						</div>
+					</div>
+				</a>
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('Grey Hat Hacking', 'images/technology/4.webp', '','images/technology/books pdf/4.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/technology/4.webp"
+							class="card-img-top book-image" alt="Java Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">Grey Hat Hacking</p>
+						</div>
+					</div>
+				</a>
+				<a class="col-6 col-sm-4 col-md-3 col-lg-2" th:href="@{'/book'}"
+					onclick="openBookDetail('Atlas of World History', 'images/history/1.webp', 'Gregory S. Aldrete','images/history/books pdf/1.pdf')">
+					<div class="card book-card h-100 text-center">
+						<img src="images/history/1.webp" class="card-img-top book-image"
+							alt="History Book">
+						<div class="card-body p-2">
+							<p class="book-title mb-0">World
+								History</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="search-results" id="searchResults"></div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+	
+    
+    <script>
+    // Array of book data
+    const books = [
+    	 { bookid: '1', title: 'Essentials of Anatomy and Physiology', category: 'biology', author: 'Valerie C. Scanlon', image: 'images/biology/1.webp', pdf: 'images/biology/books pdf/1.pdf' },
+    	  { bookid: '2', title: 'Genes, Hearing and Deafness', category: 'biology', author: 'Moores, Hilgert & Smith', image: 'images/biology/2.webp', pdf: '' },
+    	  { bookid: '3', title: 'Food Microbiology', category: 'biology', author: 'Frazier & Westhoff', image: 'images/biology/3.webp', pdf: 'images/biology/books pdf/3.pdf' },
+    	  { bookid: '4', title: 'Biology Experiments for Children', category: 'biology', author: 'Ethel Hanauer', image: 'images/biology/4.webp', pdf: '' },
+    	  { bookid: '5', title: 'Plant Biology', category: 'biology', author: 'Linda E. Graham', image: 'images/biology/5.webp', pdf: 'images/biology/books pdf/5.pdf' },
+    	  { bookid: '6', title: 'Cell Biology Protocols', category: 'biology', author: 'D. Rickwood', image: 'images/biology/6.webp', pdf: '' },
+    	  { bookid: '7', title: 'Philosophy of Biology', category: 'biology', author: 'Elliott Sober', image: 'images/biology/7.webp', pdf: '' },
+    	  { bookid: '8', title: 'Oxidation and Antioxidants', category: 'biology', author: 'Lester Packer', image: 'images/biology/8.webp', pdf: '' },
+    	  { bookid: '9', title: 'Introductory Biostatistics', category: 'biology', author: 'Chap T. Le', image: 'images/biology/9.webp', pdf: 'images/biology/books pdf/9.pdf' },
+    	  { bookid: '10', title: 'World of Microbiology', category: 'biology', author: 'K. Lee Lerner & Brenda Wilmoth Lerner', image: 'images/biology/10.webp', pdf: '' },
+    	  { bookid: '11', title: 'Biochemistry', category: 'biology', author: 'Jeremy M. Berg', image: 'images/biology/11.webp', pdf: '' },
+    	  { bookid: '12', title: 'O\'Level Biology', category: 'biology', author: 'Mary Jones', image: 'images/biology/12.webp', pdf: '' },
+    	  { bookid: '13', title: 'International Space Station', category: 'biology', author: 'Robert Godwin', image: 'images/biology/13.webp', pdf: '' },
+    	  { bookid: '14', title: 'Anatomy, Histology & Cell Biology', category: 'biology', author: 'Douglas F. Paulsen', image: 'images/biology/14.webp', pdf: '' },
+    	  { bookid: '15', title: 'Encyclopedia of Biology', category: 'biology', author: 'Don Rittner & Timothy McCabe', image: 'images/biology/15.webp', pdf: '' },
+    	  { bookid: '16', title: 'How to Write a Business Plan', category: 'business', author: 'Mike McKeever', image: 'images/business/1.webp', pdf: 'images/biology/books pdf/1.pdf' },
+    	  { bookid: '17', title: 'Never Split the Difference', category: 'business', author: 'Chris Voss', image: 'images/business/2.webp', pdf: '' },
+    	  { bookid: '18', title: '100 Great Business Ideas', category: 'business', author: 'Jenemy Kourof', image: 'images/business/3.webp', pdf: '' },
+    	  { bookid: '19', title: 'The Big Drop', category: 'business', author: 'James Rickards', image: 'images/business/4.webp', pdf: 'images/biology/books pdf/4.pdf' },
+    	  { bookid: '20', title: 'Financial Information', category: 'business', author: 'University of Cincinnati', image: 'images/business/5.webp', pdf: '' },
+    	  { bookid: '21', title: 'Mastering the Art of Success', category: 'business', author: '', image: 'images/business/6.webp', pdf: '' },
+    	  { bookid: '22', title: 'The Bible on Leadership', category: 'business', author: 'Lorin Woolfe', image: 'images/business/7.webp', pdf: 'images/biology/books pdf/7.pdf' },
+    	  { bookid: '23', title: 'The Small Business Bible', category: 'business', author: 'Steven D. Strauss', image: 'images/business/8.webp', pdf: '' },
+    	  { bookid: '24', title: 'Islamic Finance', category: 'business', author: 'Bloomshurt', image: 'images/business/9.webp', pdf: 'images/biology/books pdf/9.pdf' },
+    	  { bookid: '25', title: 'Strategic Leadership', category: 'business', author: 'Richrard Morrill', image: 'images/business/10.webp', pdf: 'images/biology/books pdf/10.pdf' },
+    	  { bookid: '26', title: 'Coaching, Mentoring & Managing', category: 'business', author: 'Micki Holliday', image: 'images/business/11.webp', pdf: '' },
+    	  { bookid: '27', title: 'Marketing Communication', category: 'business', author: 'Olujimi Kayode', image: 'images/business/12.webp', pdf: '' },
+    	  { bookid: '28', title: 'Foreign Exchange and Money Markets', category: 'business', author: 'Bob Steiner', image: 'images/business/13.webp', pdf: '' },
+    	  { bookid: '29', title: 'Michigan Trial Court Administration', category: 'business', author: 'State Court Administration', image: 'images/business/14.webp', pdf: '' },
+    	  { bookid: '30', title: 'The Leadership Secrets of Billy Graham', category: 'business', author: 'Harold Myra, Marshall Shelley', image: 'images/business/15.webp', pdf: '' },
+    	  { bookid: '31', title: '100 Great Business Ideas', category: 'economics', author: 'Jeremy Kourof', image: 'images/economics/1.webp', pdf: 'images/economics/books pdf/1.pdf' },
+    	  { bookid: '32', title: 'Fundamentals of Business Mathematics and Statistics[FMS]', category: 'economics', author: 'Foundation', image: 'images/economics/2.webp', pdf: 'images/economics/books pdf/2.pdf' },
+    	  { bookid: '33', title: 'Economics Development and Islamic Finance', category: 'economics', author: 'Zamir Iqbal', image: 'images/economics/3.webp', pdf: '' },
+    	  { bookid: '34', title: 'Wealth Of Ideas', category: 'economics', author: 'Alexandro Roncagla', image: 'images/economics/4.webp', pdf: 'images/economics/books pdf/4.pdf' },
+    	  { bookid: '35', title: 'Islamic Finance in the Global Economy', category: 'economics', author: 'Ibrahim Warde', image: 'images/economics/5.webp', pdf: '' },
+    	  { bookid: '36', title: 'Economic Science For Rural Development', category: 'economics', author: 'Proceedings of ISC', image: 'images/economics/6.webp', pdf: '' },
+    	  { bookid: '37', title: 'Handbook of the History of Economic Thought', category: 'economics', author: 'Singe Gorge', image: 'images/economics/7.webp', pdf: '' },
+    	  { bookid: '38', title: 'The Theory of Economic Growth', category: 'economics', author: 'Steven D. Strauss', image: 'images/economics/8.webp', pdf: '' },
+    	  { bookid: '39', title: 'Creative Economy', category: 'economics', author: 'Bloom Cluture', image: 'images/economics/9.webp', pdf: 'images/economics/books pdf/9.pdf' },
+    	  { bookid: '40', title: 'Introductory Econometrics', category: 'economics', author: 'Jeffrey M. Wooldridge', image: 'images/economics/10.webp', pdf: '' },
+    	  { bookid: '41', title: 'Economic Mobility', category: 'economics', author: 'Micki Holliday', image: 'images/economics/11.webp', pdf: 'images/economics/books pdf/11.pdf' },
+    	  { bookid: '42', title: 'International Economic Disintegration', category: 'economics', author: 'Wilhelm Ropke', image: 'images/economics/12.webp', pdf: '' },
+    	  { bookid: '43', title: 'The Poloitical Economy Of Growth', category: 'economics', author: 'Paul A Baran', image: 'images/economics/13.webp', pdf: '' },
+    	  { bookid: '44', title: 'The Millionaire Mindset', category: 'economics', author: 'Gerry Robert', image: 'images/economics/14.webp', pdf: '' },
+    	  { bookid: '45', title: 'The Basics of Financial Econometrics', category: 'economics', author: 'Wiley', image: 'images/economics/15.webp', pdf: '' },
+    	  { bookid: '46', title: 'Edible Wild Plants', category: 'environment', author: 'John Kallas', image: 'images/environment/1.webp', pdf: 'images/environment/books pdf/1.pdf' },
+    	  { bookid: '47', title: 'Solid Waste Management and Recycling', category: 'environment', author: 'Isha Baud, Johan Post', image: 'images/environment/2.webp', pdf: 'images/environment/books pdf/2.pdf' },
+    	  { bookid: '48', title: 'Agroforest and Biodiversity Conservation in Tropical Landscapes', category: 'environment', author: 'Gotz Schroth', image: 'images/environment/3.webp', pdf: '' },
+    	  { bookid: '49', title: 'Urban Regions', category: 'environment', author: 'Richard T.T. Forman', image: 'images/environment/4.webp', pdf: 'images/environment/books pdf/4.pdf' },
+    	  { bookid: '50', title: 'The Politics of the Environment', category: 'environment', author: 'Neil Carter', image: 'images/environment/5.webp', pdf: '' },
+    	  { bookid: '51', title: 'Bird Conservation', category: 'environment', author: 'David R Williams', image: 'images/environment/6.webp', pdf: 'images/environment/books pdf/6.pdf' },
+    	  { bookid: '52', title: 'Scarcity and Surfeit', category: 'environment', author: 'Singe Gorge', image: 'images/environment/7.webp', pdf: '' },
+    	  { bookid: '53', title: 'Forest Products, Livelihoods and Conservation', category: 'environment', author: 'Terry Sunderland', image: 'images/environment/8.webp', pdf: '' },
+    	  { bookid: '54', title: 'Environment and Agriculture in Developing Countries', category: 'environment', author: 'Not Provided', image: 'images/environment/9.webp', pdf: '' },
+    	  { bookid: '55', title: 'Comprehensive Wildlife Conservation Strategy', category: 'environment', author: 'Not Provided', image: 'images/environment/10.webp', pdf: '' },
+    	  { bookid: '56', title: 'Invasion Ecology', category: 'environment', author: 'Wiley Blackwell', image: 'images/environment/11.webp', pdf: 'images/environment/books pdf/11.pdf' },
+    	  { bookid: '57', title: 'Antarctic Climate Change and The Environment', category: 'environment', author: 'Not Provided', image: 'images/environment/12.webp', pdf: '' },
+    	  { bookid: '58', title: 'Policy Matters', category: 'environment', author: 'Not Provided', image: 'images/environment/13.webp', pdf: '' },
+    	  { bookid: '59', title: 'Metal Recycling', category: 'environment', author: 'Not Provided', image: 'images/environment/14.webp', pdf: '' },
+    	  { bookid: '60', title: 'Bird Ecology and Conservation', category: 'environment', author: 'William J. Sutherland', image: 'images/environment/15.webp', pdf: '' },
+    	  { bookid: '61', title: 'Atlas of World History', category: 'history', author: 'Philip', image: 'images/history/1.webp', pdf: 'images/environment/books pdf/1.pdf' },
+    	  { bookid: '62', title: 'Secret History of the World', category: 'history', author: 'Laura Knight-Jadezyk', image: 'images/history/2.webp', pdf: 'images/environment/books pdf/2.pdf' },
+    	  { bookid: '63', title: 'The Decisive Battles of World History', category: 'history', author: 'Gregory S. Aldrete', image: 'images/history/3.webp', pdf: '' },
+    	  { bookid: '64', title: 'Destiny Disrupted', category: 'history', author: 'Tamim Ansary', image: 'images/history/4.webp', pdf: 'images/environment/books pdf/4.pdf' },
+    	  { bookid: '65', title: 'History of Terrorism', category: 'history', author: 'GERARD CHALIANO ANO ARNAUD', image: 'images/history/5.webp', pdf: '' },
+    	  { bookid: '66', title: 'Islamic Economics', category: 'history', author: 'Ahmed El-Ashker and Rodney Wilson', image: 'images/history/6.webp', pdf: '' },
+    	  { bookid: '67', title: 'MIDDLE AGES', category: 'history', author: '', image: 'images/history/7.webp', pdf: '' },
+    	  { bookid: '68', title: 'The history of Israel.Translated from the German', category: 'history', author: 'Heinrich Ewald', image: 'images/history/8.webp', pdf: '' },
+    	  { bookid: '69', title: 'JERUSALEM intheTimeofJesus', category: 'history', author: 'Joachilll Jerennias', image: 'images/history/9.webp', pdf: '' },
+    	  { bookid: '70', title: 'ROUTLEDGE HISTORY OF WORLD PHILOSOPHIES', category: 'history', author: '', image: 'images/history/10.webp', pdf: '' },
+    	  { bookid: '71', title: 'GUIDELINES FOR RECORDING HISTORIC SHIPS', category: 'history', author: '', image: 'images/history/11.webp', pdf: '' },
+    	  { bookid: '72', title: 'Rite Of Memphis', category: 'history', author: '', image: 'images/history/12.webp', pdf: 'images/environment/books pdf/12.pdf' },
+    	  { bookid: '73', title: 'Political Grey Area', category: 'history', author: '', image: 'images/history/13.webp', pdf: '' },
+    	  { bookid: '74', title: 'The History of the Earth', category: 'history', author: '', image: 'images/history/14.webp', pdf: 'images/environment/books pdf/14.pdf' },
+    	  { bookid: '75', title: 'U.S. History', category: 'history', author: '', image: 'images/history/15.webp', pdf: '' },
+    	  { bookid: '76', title: 'Building Arduino Projects for the Internet of Things', category: 'technology', author: 'Adeel Javed', image: 'images/technology/1.webp', pdf: 'images/technology/books pdf/1.pdf' },
+    	  { bookid: '77', title: 'SEO', category: 'technology', author: 'Jerri L Ledford', image: 'images/technology/2.webp', pdf: '' },
+    	  { bookid: '78', title: 'Digital Video For Dummies', category: 'technology', author: 'Keith Underdahl', image: 'images/technology/3.webp', pdf: '' },
+    	  { bookid: '79', title: 'Grey Hat Hacking', category: 'technology', author: '', image: 'images/technology/4.webp', pdf: 'images/technology/books pdf/4.pdf' },
+    	  { bookid: '80', title: 'Web Animation using JavaScript', category: 'technology', author: 'Julian Shapiro', image: 'images/technology/5.webp', pdf: 'images/technology/books pdf/5.pdf' },
+    	  { bookid: '81', title: 'Mathematical Foundation of Computer Science', category: 'technology', author: 'Y.N. Singh', image: 'images/technology/6.webp', pdf: '' },
+    	  { bookid: '82', title: 'Learn Java For Web Development', category: 'technology', author: 'Vishal Layka', image: 'images/technology/7.webp', pdf: '' },
+    	  { bookid: '83', title: 'Excel Timesaving Techniques for Dummies', category: 'technology', author: 'Grey Harvey', image: 'images/technology/8.webp', pdf: '' },
+    	  { bookid: '84', title: 'Cloud Computing', category: 'technology', author: 'Brian J.S Chee', image: 'images/technology/9.webp', pdf: 'images/technology/books pdf/9.pdf' },
+    	  { bookid: '85', title: 'The Four Wheel Car', category: 'technology', author: '', image: 'images/technology/10.webp', pdf: '' },
+    	  { bookid: '86', title: 'SAP GRC for Dummies', category: 'technology', author: 'Denise Vu Broady', image: 'images/technology/11.webp', pdf: '' },
+    	  { bookid: '87', title: 'Autodesk Revit Architecture', category: 'technology', author: '', image: 'images/technology/12.webp', pdf: '' },
+    	  { bookid: '88', title: 'Car Hacking', category: 'technology', author: '', image: 'images/technology/13.webp', pdf: 'images/technology/books pdf/13.pdf' },
+    	  { bookid: '89', title: 'Web designer\'s guide to wordpress', category: 'technology', author: 'Jesse Friedman', image: 'images/technology/14.webp', pdf: '' },
+    	  { bookid: '90', title: 'Google Earth for Dummies', category: 'technology', author: 'David A. Crowder', image: 'images/technology/15.webp', pdf: '' },
+    	  { bookid: '91', title: 'The 5 Second Rule', category: 'time management', author: 'Mel Robbins', image: 'images/time management/1.webp', pdf: 'images/time management/books pdf/1.pdf' },
+    	  { bookid: '92', title: 'Effective Time Management Strategies', category: 'time management', author: '', image: 'images/time management/2.webp', pdf: '' },
+    	  { bookid: '93', title: 'Quality Money Management', category: 'time management', author: 'Andrew Kumilga', image: 'images/time management/3.webp', pdf: 'images/time management/books pdf/3.pdf' },
+    	  { bookid: '94', title: 'A Trader\'s Money Management System', category: 'time management', author: 'Bennett A McDowell', image: 'images/time management/4.webp', pdf: '' },
+    	  { bookid: '95', title: 'Time Management', category: 'time management', author: 'Richard Walsh', image: 'images/time management/5.webp', pdf: 'images/time management/books pdf/5.pdf' },
+    	  { bookid: '96', title: 'The Power of Fun', category: 'time management', author: 'Catherine Price', image: 'images/time management/6.webp', pdf: '' },
+    	  { bookid: '97', title: 'The Way of The Intelligent Rebel', category: 'time management', author: 'Olivier Roland', image: 'images/time management/7.webp', pdf: '' },
+    	  { bookid: '98', title: 'Faster than normal', category: 'time management', author: 'Peter Shankman', image: 'images/time management/8.webp', pdf: '' },
+    	  { bookid: '99', title: 'The 5am Club', category: 'time management', author: 'Robin Sharma', image: 'images/time management/9.webp', pdf: 'images/time management/books pdf/9.pdf' },
+    	  { bookid: '100', title: 'Gateway to the world of Toolkit', category: 'time management', author: '', image: 'images/time management/10.webp', pdf: '' },
+    	  { bookid: '101', title: 'Trading Systems and Money Management', category: 'time management', author: 'Thomas Stridsman', image: 'images/time management/11.webp', pdf: '' },
+    	  { bookid: '102', title: 'Research in engineering and technology Education', category: 'time management', author: '', image: 'images/time management/12.webp', pdf: '' },
+    	  { bookid: '103', title: 'Remote Inc', category: 'time management', author: 'Robert C. Pozen', image: 'images/time management/13.jpg', pdf: 'images/time management/books pdf/13.pdf' },
+    	  { bookid: '104', title: 'Effortless', category: 'time management', author: 'Greg McKeown', image: 'images/time management/15.jpg', pdf: '' },
+    	  { bookid: '105', title: 'Getting Things Done Workbook', category: 'time management', author: 'David Allen', image: 'images/time management/16.jpg', pdf: '' }
+
+    
+];
+
+
+    // Function to handle search input
+    function handleSearch() {
+        const searchInput = document.getElementById("searchInput").value.toLowerCase();
+        const suggestionsContainer = document.getElementById("suggestions");
+
+        // Filter books based on the input
+        const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchInput));
+
+        // Clear previous suggestions
+        suggestionsContainer.innerHTML = '';
+
+        // If there are matching books, display them as suggestions
+        if (filteredBooks.length > 0 && searchInput) {
+            suggestionsContainer.style.display = 'block';
+            filteredBooks.forEach(book => {
+                const suggestionItem = document.createElement("div");
+                suggestionItem.classList.add("list-group-item");
+                suggestionItem.innerHTML = `<img src="${book.image}" alt="${book.title}" style="width: 40px; height: 60px; margin-right: 10px; border-radius: 5px;"> ${book.title}`;
+                suggestionItem.onclick = function() {
+                    openBookDetail(book.title, book.image, book.author, book.pdf,book.bookid);
+                };
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+        } else {
+            suggestionsContainer.style.display = 'none';
+        }
+    }
+
+   
+    function openBookDetail(title, image, author, pdf,bookid) {
+        const book = { title, image, author,pdf,bookid };
+        localStorage.setItem("selectedBook", JSON.stringify(book));
+
+        // Construct URL with query parameters
+        window.location.href = `/booksearch?title=${encodeURIComponent(title)}&image=${encodeURIComponent(image)}&author=${encodeURIComponent(author)}&pdf=${encodeURIComponent(pdf)}&bookid=${encodeURIComponent(bookid)}`;
+    }
+
+        
+
+    // Event listener for search input
+    document.getElementById("searchInput").addEventListener('input', handleSearch);
+</script>
+
+    <footer class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <p>&copy; 2025 Presidency University | All rights reserved.</p>
+            <p>Address: 123 University Rd, Bangalore, India</p>
+            <p>Phone: +91 123 456 7890 | Email: contact@presidencyuniversity.edu</p>
+        </div>
+    </footer>
+
+</body>
+</html>

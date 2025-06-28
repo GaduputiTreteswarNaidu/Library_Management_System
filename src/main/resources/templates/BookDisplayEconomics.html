@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Library Display</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet">
+	
+	<style>
+	@charset "UTF-8";
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f7f7f7;
+}
+
+h5, h6 {
+	color: #2c3e50;
+}
+
+.card img {
+	margin-top: 20px;
+	margin-left: 70px;
+	width: 200px;
+	object-fit: cover;
+}
+
+.card-title {
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.navbar {
+	background-color: #003366;
+}
+
+.navbar-brand, .nav-link, .nav-link i {
+	color: white !important;
+}
+
+.nav-link:hover {
+	border-radius: 5px;
+	background-color: grey
+}
+
+.account-menu {
+	position: relative;
+	display: inline-block;
+}
+
+.account-dropdown {
+	display: none;
+	position: absolute;
+	right: 0;
+	background: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	padding: 10px;
+	min-width: 150px;
+}
+
+.account-menu:hover .account-dropdown {
+	display: block;
+}
+	</style>
+</head>
+<body>
+
+	<!-- Header / Topbar -->
+	<!-- Header / Topbar -->
+	<nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{'/home'}">
+                <img style="width:250px" class="pu-logo" src="images/pu_logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/viewTransaction" >Borrowed Books</a></li>
+                    <li class="nav-item account-menu">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-circle"></i> Account
+                        </a>
+                        <div class="account-dropdown bg-white shadow-lg rounded-xl p-4 w-64 space-y-3">
+    <a href="/login" 
+       class="block text-red-500 hover:text-red-700 font-medium transition duration-200">
+        Logout
+    </a>
+     <a href="/profile" class="block text-dark font-medium">Profile</a>
+</div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<!-- Page Layout -->
+	<div class="container-fluid">
+		<div class="row">
+			<p></p>
+			<h5>Results for the search "economics"</h5>
+			<aside class="col-md-2 bg-light p-2"></aside>
+
+
+			<!-- Main Content -->
+			<main class="col-md-9 p-4">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+					<!-- Book Card -->
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/1.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">100 Great Business Ideas</h6>
+								<p class="text-muted small mb-2">Jeremy Kourof</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('100 Great Business Ideas', 'images/economics/1.webp', 'Jeremy Kourof','images/economics/books pdf/1.pdf')">Read</button>
+								</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Duplicate for demo -->
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/2.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Fundamentals of Business Mathematics
+									and Statistics[FMS]</h6>
+								<p class="text-muted small mb-2">Foundation</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Fundamentals of Business Mathematics and Statistics[FMS]', 'images/economics/2.webp', 'Foundation','images/economics/books pdf/2.pdf')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/3.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Economics Development and Islamic
+									Finance</h6>
+								<p class="text-muted small mb-2">Zamir Iqbal</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Economics Development and Islamic Finance', 'images/economics/3.webp', 'Zamir Iqbal','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/4.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Wealth Of Ideas</h6>
+								<p class="text-muted small mb-2">Alexandro Roncagla</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Wealth Of Ideas', 'images/economics/4.webp', 'Alexandro Roncagla','images/economics/books pdf/4.pdf')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/5.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Islamic Finance in the Global
+									Economy</h6>
+								<p class="text-muted small mb-2">Ibrahim Warde</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Islamic Finance in the Global Economy', 'images/economics/5.webp', 'Ibrahim Warde','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/6.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Economic Science For Rural
+									Development</h6>
+								<p class="text-muted small mb-2">Proceedings of ISC</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Economic Science For Rural Development', 'images/economics/6.webp', 'Proceedings of ISC','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/7.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Handbook of the History of Economic
+									Thought</h6>
+								<p class="text-muted small mb-2">Singe Gorge</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Handbook of the History of Economic Thought', 'images/economics/7.webp', 'Singe Gorge','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/8.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">The Theory of Economic Growth</h6>
+								<p class="text-muted small mb-2">Steven D. Strauss</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('The Theory of Economic Growth', 'images/economics/8.webp', 'Steven D. Strauss','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/9.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Creative Economy</h6>
+								<p class="text-muted small mb-2">Bloom Cluture</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Creative Economy', 'images/economics/9.webp', 'Bloom Cluture','images/economics/books pdf/9.pdf')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/10.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Introductory Econometrics</h6>
+								<p class="text-muted small mb-2">Jeffrey M. Wooldridge</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Introductory Econometrics', 'images/economics/10.webp', 'effrey M. Wooldridge','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/11.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Economic Mobility</h6>
+								<p class="text-muted small mb-2">Micki Holliday</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Economic Mobility', 'images/economics/11.webp', 'Micki Holliday','images/economics/books pdf/11.pdf')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/12.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">International Economic
+									Disintegration</h6>
+								<p class="text-muted small mb-2">Wilhelm Ropke</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('International Economic Disintegration', 'images/economics/12.webp', 'Wilhelm Ropke','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/13.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">The Poloitical Economy Of Growth</h6>
+								<p class="text-muted small mb-2">Paul A Baran</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('The Poloitical Economy Of Growth', 'images/economics/13.webp', 'Paul A Baran','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/14.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">The Millionaire Mindset</h6>
+								<p class="text-muted small mb-2">Gerry Robert</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('The Millionaire Mindset', 'images/economics/14.webp', 'Gerry Robert','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/economics/15.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">The Basics of Financial Econometrics</h6>
+								<p class="text-muted small mb-2">Wiley</p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail(' The Basics of Financial Econometrics', 'images/economics/15.webp', 'Wiley','')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Add more cards as needed -->
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+    function openBookDetail(title, image, author,pdf) {
+        const book = {
+            title: title,
+            image: image,
+            author: author,
+            pdf:pdf
+        };
+        localStorage.setItem("selectedBook", JSON.stringify(book));
+        window.location.href = "book.html"; // single detail page
+    }
+</script>
+</body>
+</html>
+

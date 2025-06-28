@@ -1,0 +1,281 @@
+c<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Available count - Admin Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: poppins, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .admin-dashboard {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar form {
+            margin-bottom: 20px;
+        }
+
+        .sidebar button {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .sidebar button:hover {
+            background-color: #1abc9c;
+        }
+
+        .metrics {
+            margin-left: 270px;
+            padding: 20px;
+            width: calc(100% - 270px);
+        }
+
+        .metrics h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            color: #2c3e50;
+        }
+
+        /* Home Button Styles */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #1abc9c;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+
+        .update-form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .update-form input {
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
+        .btn-redirect {
+            width: 250px;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-redirect:hover {
+            background-color: #1abc9c;
+        }
+        table {
+      background-color: white;
+      border-collapse: collapse;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #f0f0f0;
+    }
+
+        @media (max-width: 768px) {
+            .admin-dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .metrics {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <div class="sidebar">
+            <a th:href="@{'/admin'}" style="text-decoration: none; color: inherit;">  <h2>Admin Panel</h2></a>
+            <a th:href="@{'/lms/borrowed'}"><button>Borrow Records</button></a>
+            <a th:href="@{'/lms/AvailableBooks'}"><button>Available Books</button></a>
+            <a th:href="@{'/lms/AddBook'}"><button>Add Book</button></a>
+            <a th:href="@{'/lms/DeleteBook'}"><button>Delete Book</button></a>
+            <a th:href="@{'/lms/UpdateBookCount'}"><button>Update Book Count</button></a>
+            <a th:href="@{'/lms/AddUser'}"><button>Add User</button></a>
+            <a th:href="@{'/lms/ShowUsers'}"><button>Show Users</button></a>
+            <a th:href="@{'/lms/DeleteUser'}"><button>Delete User</button></a>
+            <a th:href="@{'/lms/UpdateUser'}"><button>Update User</button></a>
+            <a th:href="@{'/lms/BorrowBook'}"><button>Borrow Book</button></a>
+            <a th:href="@{'/lms/CollectBook'}"><button>Collect Book</button></a>
+            <a th:href="@{'/lms/LateReturn'}"><button>Late Return</button></a>
+            <a th:href="@{'/login'}"><button>🔚 Logout</button></a>
+        </div>
+
+        <div class="metrics">
+            <h1>Update Book Count</h1>
+
+            <!-- Display user details in a table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Available  ount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${books}">
+                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.title}"></td>
+                        <td th:text="${book.type}"></td>
+                        <td th:text="${book.available_count}"></td>
+                        <td>
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" th:data-userid="${book.id}">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+           
+            <!-- Modal for updating password -->
+            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModalLabel">Update Available Count</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                               <form method="POST" action="/lms/UpdateBookCount">
+    <input type="hidden" id="userId" name="userId">
+    <div class="mb-3">
+        <label for="newavailable_count" class="form-label">Update Count</label>
+        <input type="available_count" id="available_count" name="available_count" class="form-control" required>
+    </div>
+   
+</form>
+</div>
+</div>
+</div>
+</div>
+
+        <a th:href="@{'/admin'}">
+          <button class="btn btn-secondary mt-4">Back</button>
+        </a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Set the userId into the modal when the update button is clicked
+        var updateButtons = document.querySelectorAll('button[data-bs-toggle="modal"]');
+        updateButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                var userId = this.getAttribute('data-userid');
+                document.getElementById('userId').value = userId;
+            });
+        });
+    </script>
+</body>
+</html>
+

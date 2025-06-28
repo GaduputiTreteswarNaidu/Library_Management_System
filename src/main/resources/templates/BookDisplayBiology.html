@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Library Display</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet">
+	
+	<style>
+	@charset "UTF-8";
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f7f7f7;
+}
+
+h5, h6 {
+	color: #2c3e50;
+}
+
+.card img {
+	margin-top: 20px;
+	margin-left: 70px;
+	width: 200px;
+	object-fit: cover;
+}
+
+.card-title {
+	font-size: 1rem;
+	font-weight: 600;
+}
+.pu-logo {
+            width: 100px;
+        }
+
+        .navbar {
+            background-color: #003366;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar-brand, .nav-link, .nav-link i {
+            color: white !important;
+        }
+
+        .nav-link:hover {
+            border-radius: 5px;
+            background-color: grey;
+        }
+         .account-menu {
+            position: relative;
+            display: inline-block;
+        }
+	
+        .account-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+           
+           
+            min-width: 150px;
+            z-index: 1050;
+            width: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 12px 16px;
+    font-family: 'Segoe UI', sans-serif;
+        }
+.account-dropdown p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #333;
+  }
+  .account-dropdown strong {
+    color: #1a73e8;
+  }
+
+  .account-dropdown a {
+    display: block;
+    text-decoration: none;
+    color: #0e141c;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: background 0.2s;
+    border-radius: 4px;
+  }
+
+  .account-dropdown a:hover {
+    background-color: #d1d2d6;
+  }
+        .account-menu:hover .account-dropdown {
+            display: block;
+        }
+        
+        
+
+	</style>
+</head>
+<body>
+
+	<!-- Header / Topbar -->
+	<nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{'/home'}">
+                <img style="width:250px" class="pu-logo" src="images/pu_logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/viewTransaction" >Borrowed Books</a></li>
+                    <li class="nav-item account-menu">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-circle"></i> Account
+                        </a>
+                        <div class="account-dropdown bg-white shadow-lg rounded-xl p-4 w-64 space-y-3">
+    <a href="/login" 
+       class="block text-red-500 hover:text-red-700 font-medium transition duration-200">
+        Logout
+    </a>
+     <a href="/profile" class="block text-dark font-medium">Profile</a>
+</div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<!-- Page Layout -->
+	<div class="container-fluid">
+		<div class="row">
+			<p></p>
+			<h5>Results for the search "biology"</h5>
+			<!-- Sidebar Filters -->
+			<aside class="col-md-2 bg-light p-2 "></aside>
+
+			<!-- Main Content -->
+			<main class="col-md-9 p-4">
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+					<!-- Book Card -->
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/1.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Essentials of Anatomy and Physiology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+									<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Essentials of Anatomy and Physiology', 'images/biology/1.webp', '','images/biology/books pdf/1.pdf','1')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Duplicate for demo -->
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/2.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Genes, Hearing and Deafness</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Genes, Hearing and Deafness', 'images/biology/2.webp', '','','2')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/3.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Food Microbiology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Food Microbiology', 'images/biology/3.webp', '','images/biology/books pdf/3.pdf','3')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/4.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Biology Experiments for Children</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Biology Experiments for Children', 'images/biology/4.webp', '','','4')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/5.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Plant Biology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Plant Biology', 'images/biology/5.webp', '','images/biology/books pdf/5.pdf','5')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/6.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Cell Biology Protocols</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Cell Biology Protocols', 'images/biology/6.webp', '','','6')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/7.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Philosopohy of Biology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Philosopohy of Biology', 'images/biology/7.webp', '','','7')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/8.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Oxidation and Antioxidants</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Oxidation and Antioxidants', 'images/biology/8.webp', '','','8')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/9.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Introductory Biostatistics</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Introductory Biostatistics', 'images/biology/9.webp', '','images/biology/books pdf/9.pdf','9')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/10.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">World of Microbiology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('World of Microbiology', 'images/biology/10.webp', '','','10')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/11.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Biochemistry</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Biochemistry', 'images/biology/11.webp', '','','11')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/12.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">O'Level Biology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail(' O Level Biology', 'images/biology/12.webp', '','','12')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/13.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">International Space Station</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('International Space Station', 'images/biology/13.webp', '','','13')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/14.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Anatomy, Histology & Cell Biology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Anatomy, Histology & Cell Biology', 'images/biology/14.webp', '','','14')">Read</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card h-100 shadow-sm">
+							<img src="images/biology/15.webp" class="card-img-top"
+								alt="Book Cover">
+							<div class="card-body">
+								<h6 class="card-title">Encyclopedia of Biology</h6>
+								<p class="text-muted small mb-2"></p>
+								<div class="d-flex justify-content-between">
+										<a th:href="@{'/book'}"><button class="btn btn-danger btn-sm read-btn"
+										onclick="openBookDetail('Encyclopedia of Biology', 'images/biology/15.webp', '','','15')">Read</button></a>
+									<!-- <button class="btn btn-outline-secondary btn-sm">Borrow</button>-->
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Add more cards as needed -->
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+    function openBookDetail(title, image, author,pdf,bookid) {
+        const book = {
+            title: title,
+            image: image,
+            author: author,
+            pdf:pdf,
+            bookid:bookid
+        };
+        localStorage.setItem("selectedBook", JSON.stringify(book));
+        // single detail page
+    }
+</script>
+</body>
+</html>
+

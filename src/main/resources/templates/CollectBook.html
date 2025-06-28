@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Return Book - Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+    .admin-dashboard {
+      display: flex;
+      width: 100%;
+    }
+    .sidebar {
+      width: 260px;
+      background-color: #2c3e50;
+      padding: 20px;
+      color: white;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .sidebar button {
+      background-color: #34495e;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      text-align: left;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+    .sidebar button:hover {
+      background-color: #1abc9c;
+    }
+    .metrics {
+      margin-left: 270px;
+      padding: 30px;
+      width: calc(100% - 270px);
+    }
+    .metrics h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 36px;
+      color: #2c3e50;
+    }
+    .form-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: 600;
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+    }
+    input:focus {
+      outline: none;
+      border-color: #3498db;
+      background-color: #fff;
+    }
+    .btn-primary {
+      background-color: #3498db;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover, .btn-success:hover {
+      background-color: #1abc9c;
+    }
+    .details-box {
+      margin-top: 30px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+    }
+    @media (max-width: 768px) {
+      .admin-dashboard { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: relative; }
+      .metrics { margin-left: 0; width: 100%; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-dashboard">
+  <div class="sidebar">
+    <a th:href="@{'/admin'}" style="text-decoration: none; color: inherit;"><h2>Admin Panel</h2></a>
+    <a th:href="@{'/lms/borrowed'}"><button>Borrow Records</button></a>
+    <a th:href="@{'/lms/AvailableBooks'}"><button>Available Books</button></a>
+    <a th:href="@{'/lms/AddBook'}"><button>Add Book</button></a>
+    <a th:href="@{'/lms/DeleteBook'}"><button>Delete Book</button></a>
+    <a th:href="@{'/lms/UpdateBookCount'}"><button>Update Book Count</button></a>
+    <a th:href="@{'/lms/AddUser'}"><button>Add User</button></a>
+    <a th:href="@{'/lms/ShowUsers'}"><button>Show Users</button></a>
+    <a th:href="@{'/lms/DeleteUser'}"><button>Delete User</button></a>
+    <a th:href="@{'/lms/UpdateUser'}"><button>Update User</button></a>
+    <a th:href="@{'/lms/BorrowBook'}"><button>Borrow Book</button></a>
+    <a th:href="@{'/lms/CollectBook'}"><button>Collect Book</button></a>
+    <a th:href="@{'/lms/LateReturn'}"><button>Late Return</button></a>
+    <a th:href="@{'/login'}"><button>🔚 Logout</button></a>
+  </div>
+
+  <div class="metrics">
+    <h1>Return Book</h1>
+    <div class="form-container">
+      <form method="post" action="/lms/CollectBook/Update">
+        <div class="form-group">
+          <label for="transactionId">Transaction ID</label>
+          <input type="text" id="transactionId" name="transactionId" required />
+        </div>
+        <div class="form-group">
+          <label for="bookid">Book ID</label>
+          <input type="text" id="bookid" name="bookid" required />
+        </div>
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" name="userId" required />
+        </div>
+        <div class="form-group">
+          <label for="userName">User Name</label>
+          <input type="text" id="userName" name="userName" required />
+        </div>
+        <div class="form-group">
+          <label for="fine">Fine</label>
+          <input type="number" id="fine" name="fine" required />
+        </div>
+        <button type="submit" class="btn btn-success">Collect Book</button>
+      </form>
+      <form method="get" action="/lms/CollectBook/Details" class="mt-3">
+        <div class="form-group">
+          <label for="checkTransactionId">Check Transaction Details</label>
+          <input type="text" id="checkTransactionId" name="transactionId" placeholder="Enter Transaction ID" class="form-control" required />
+        </div>
+        <button type="submit" name="check" value="true" class="btn btn-warning">Check Details</button>
+      </form>
+    </div>
+
+    <div class="details-box mt-4" th:if="${t != null}">
+      <h5>Borrow Transaction Details:</h5>
+      <p><strong>Transaction ID:</strong> <span th:text="${t.transactionId}"></span></p>
+      <p><strong>Book ID:</strong> <span th:text="${t.bookid}"></span></p>
+      <p><strong>User ID:</strong> <span th:text="${t.userId}"></span></p>
+      <p><strong>User Name:</strong> <span th:text="${t.userName}"></span></p>
+      <p><strong>Borrow Date:</strong> <span th:text="${t.borrowDate}"></span></p>
+      <p><strong>Due Date:</strong> <span th:text="${t.dueDate}"></span></p>
+      <p><strong>Status:</strong> <span th:text="${t.status}"></span></p>
+      <p><strong>Fine:</strong> <span th:text="${t.fine}"></span></p>
+    </div>
+    <a th:href="@{'/admin'}">
+            <button class="btn btn-secondary mt-4">Back</button>
+        </a>
+  </div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('https://www.collegeduniyabharat.com/wp-content/uploads/2024/09/presidency-university-bangalore.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .alert {
+            margin-bottom: 15px;
+        }
+
+        .alert-danger {
+            color: #fff;
+            background-color: #f44336;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <h2 class="mb-4">Admin Login</h2>
+
+        <!-- Error Alert (Hidden by default) -->
+        <div class="alert alert-danger" id="errorAlert">
+            Invalid credentials, please try again.
+        </div>
+
+        <!-- Login Form -->
+        <form method="post" action="/adminVerify">
+            <div class="mb-3">
+                <input type="text" name="id" class="form-control" placeholder="Admin ID" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>
