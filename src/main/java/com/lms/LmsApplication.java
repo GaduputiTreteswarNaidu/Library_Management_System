@@ -11,3 +11,5 @@ public class LmsApplication {
 	}
 
 }
+
+//mysql password is : treta123
