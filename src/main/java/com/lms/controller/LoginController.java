@@ -33,8 +33,8 @@ public class LoginController {
 	public String adminLogin() {
 		return "AdminLogin";
 	}
-	@RequestMapping("/home") 
-	public String home() {
+	@RequestMapping("/homes") 
+	public String homes() {
 		return "homes";
 	}
 	
