@@ -33,9 +33,9 @@ public class LoginController {
 	public String adminLogin() {
 		return "AdminLogin";
 	}
-	@RequestMapping("/home") 
+	@RequestMapping("/homes") 
 	public String home() {
-		return "home";
+		return "homes";
 	}
 	
 	@RequestMapping("/userVerify")
@@ -49,7 +49,7 @@ public class LoginController {
 	    if (user != null && user.getPassword().equals(password)) {
 	        // ✅ Save user ID in session
 	        session.setAttribute("userId", userId);
-	        return "redirect:/home";
+	        return "redirect:/homes";
 	    } else {
 	        model.addAttribute("error", "Invalid user ID or password");
 	        return "ErrorLogin";
